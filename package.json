@@ -1,0 +1,16 @@
+{
+  "name": "timber-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "yarn workspace @timber/core build",
+    "dev:server": "yarn workspace @timber/sample-server dev",
+    "dev:demo": "yarn workspace @timber/demo dev",
+    "typecheck": "tsc --build"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

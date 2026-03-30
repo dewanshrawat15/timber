@@ -1,0 +1,149 @@
+{
+  "version": "1.0",
+  "name": "Dashboard",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "min-h-screen bg-gray-50 p-6 gap-6" },
+    "children": [
+      {
+        "type": "Row",
+        "key": "header",
+        "styling": { "className": "items-center justify-between" },
+        "children": [
+          {
+            "type": "Text",
+            "key": "header-title",
+            "props": { "as": "h1" },
+            "styling": { "className": "text-2xl font-bold text-gray-900" },
+            "children": "Timber Dashboard"
+          },
+          {
+            "type": "Button",
+            "key": "header-cta",
+            "props": { "variant": "primary", "size": "md" },
+            "children": "New Report"
+          }
+        ]
+      },
+      {
+        "type": "Grid",
+        "key": "stats-grid",
+        "props": { "cols": 3, "gap": "gap-4" },
+        "children": [
+          {
+            "type": "Card",
+            "key": "stat-users",
+            "props": { "title": "Total Users", "shadow": "md" },
+            "styling": { "className": "bg-white" },
+            "children": [
+              {
+                "type": "Text",
+                "key": "stat-users-value",
+                "styling": { "className": "text-3xl font-bold text-indigo-600 mt-2" },
+                "children": "12,400"
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "stat-revenue",
+            "props": { "title": "Revenue", "shadow": "md" },
+            "styling": { "className": "bg-white" },
+            "children": [
+              {
+                "type": "Text",
+                "key": "stat-revenue-value",
+                "styling": { "className": "text-3xl font-bold text-green-600 mt-2" },
+                "children": "$84,200"
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "stat-sessions",
+            "props": { "title": "Active Sessions", "shadow": "md" },
+            "styling": { "className": "bg-white" },
+            "children": [
+              {
+                "type": "Text",
+                "key": "stat-sessions-value",
+                "styling": { "className": "text-3xl font-bold text-orange-500 mt-2" },
+                "children": "1,893"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Grid",
+        "key": "content-grid",
+        "props": { "cols": 2, "gap": "gap-4" },
+        "children": [
+          {
+            "type": "Card",
+            "key": "recent-activity",
+            "props": { "title": "Recent Activity", "shadow": "md", "bordered": true },
+            "styling": { "className": "bg-white" },
+            "children": [
+              {
+                "type": "Column",
+                "key": "activity-list",
+                "styling": { "className": "gap-3 mt-2" },
+                "children": [
+                  {
+                    "type": "Text",
+                    "key": "activity-1",
+                    "styling": { "className": "text-sm text-gray-600" },
+                    "children": "User #1042 signed up"
+                  },
+                  {
+                    "type": "Text",
+                    "key": "activity-2",
+                    "styling": { "className": "text-sm text-gray-600" },
+                    "children": "Report #88 generated"
+                  },
+                  {
+                    "type": "Text",
+                    "key": "activity-3",
+                    "styling": { "className": "text-sm text-gray-600" },
+                    "children": "Payment of $320 received"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "quick-actions",
+            "props": { "title": "Quick Actions", "shadow": "md", "bordered": true },
+            "styling": { "className": "bg-white" },
+            "children": [
+              {
+                "type": "Column",
+                "key": "actions-list",
+                "styling": { "className": "gap-3 mt-2" },
+                "children": [
+                  {
+                    "type": "Button",
+                    "key": "action-export",
+                    "props": { "variant": "secondary", "size": "md" },
+                    "styling": { "className": "w-full" },
+                    "children": "Export Data"
+                  },
+                  {
+                    "type": "Button",
+                    "key": "action-invite",
+                    "props": { "variant": "ghost", "size": "md" },
+                    "styling": { "className": "w-full" },
+                    "children": "Invite Team Member"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

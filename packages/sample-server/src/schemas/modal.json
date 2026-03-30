@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "name": "Modal Example",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "p-8 gap-6 min-h-screen bg-gray-50 items-start" },
+    "children": [
+      {
+        "type": "Text",
+        "key": "page-title",
+        "props": { "as": "h1" },
+        "styling": { "className": "text-2xl font-bold text-gray-900" },
+        "children": "Modal Demo"
+      },
+      {
+        "type": "Text",
+        "key": "page-desc",
+        "styling": { "className": "text-gray-500 text-sm" },
+        "children": "Click the button below to open the confirmation modal."
+      },
+      {
+        "type": "Button",
+        "key": "open-modal-btn",
+        "props": { "variant": "primary", "size": "md" },
+        "children": "Open Modal"
+      },
+      {
+        "type": "Modal",
+        "key": "confirm-modal",
+        "props": {
+          "isOpen": false,
+          "title": "Confirm Action",
+          "description": "Are you sure you want to proceed? This action cannot be undone.",
+          "size": "md"
+        },
+        "children": [
+          {
+            "type": "Row",
+            "key": "modal-actions",
+            "styling": { "className": "justify-end gap-3 mt-2" },
+            "children": [
+              {
+                "type": "Button",
+                "key": "modal-cancel-btn",
+                "props": { "variant": "ghost", "size": "md" },
+                "children": "Cancel"
+              },
+              {
+                "type": "Button",
+                "key": "modal-confirm-btn",
+                "props": { "variant": "destructive", "size": "md" },
+                "children": "Confirm"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

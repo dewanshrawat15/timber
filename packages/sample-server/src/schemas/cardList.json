@@ -1,0 +1,114 @@
+{
+  "version": "1.0",
+  "name": "Card List",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "p-6 gap-4 bg-gray-50 min-h-screen max-w-2xl mx-auto" },
+    "children": [
+      {
+        "type": "Text",
+        "key": "list-heading",
+        "props": { "as": "h1" },
+        "styling": { "className": "text-2xl font-bold text-gray-900" },
+        "children": "Articles"
+      },
+      {
+        "type": "Card",
+        "key": "card-1",
+        "props": {
+          "title": "Getting Started with Timber",
+          "subtitle": "March 30, 2026 · 5 min read",
+          "shadow": "md",
+          "bordered": true
+        },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Text",
+            "key": "card-1-body",
+            "styling": { "className": "text-sm text-gray-600 mt-1" },
+            "children": "Learn how to install and configure the Timber component library in your React or Next.js project in under five minutes."
+          },
+          {
+            "type": "Row",
+            "key": "card-1-footer",
+            "styling": { "className": "mt-4 justify-end" },
+            "children": [
+              {
+                "type": "Button",
+                "key": "card-1-read",
+                "props": { "variant": "primary", "size": "sm" },
+                "children": "Read More"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "key": "card-2",
+        "props": {
+          "title": "Server-Driven UI with TimberRenderer",
+          "subtitle": "March 28, 2026 · 8 min read",
+          "shadow": "md",
+          "bordered": true
+        },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Text",
+            "key": "card-2-body",
+            "styling": { "className": "text-sm text-gray-600 mt-1" },
+            "children": "Explore how the TimberRenderer allows your backend to fully control UI layout by returning structured JSON schemas."
+          },
+          {
+            "type": "Row",
+            "key": "card-2-footer",
+            "styling": { "className": "mt-4 justify-end" },
+            "children": [
+              {
+                "type": "Button",
+                "key": "card-2-read",
+                "props": { "variant": "primary", "size": "sm" },
+                "children": "Read More"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "key": "card-3",
+        "props": {
+          "title": "Customizing Tailwind with Timber",
+          "subtitle": "March 25, 2026 · 4 min read",
+          "shadow": "md",
+          "bordered": true
+        },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Text",
+            "key": "card-3-body",
+            "styling": { "className": "text-sm text-gray-600 mt-1" },
+            "children": "Timber ships zero bundled CSS. Learn how to configure your Tailwind content paths to include Timber's utility classes."
+          },
+          {
+            "type": "Row",
+            "key": "card-3-footer",
+            "styling": { "className": "mt-4 justify-end" },
+            "children": [
+              {
+                "type": "Button",
+                "key": "card-3-read",
+                "props": { "variant": "primary", "size": "sm" },
+                "children": "Read More"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

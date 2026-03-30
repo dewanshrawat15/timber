@@ -1,0 +1,133 @@
+{
+  "version": "1.0",
+  "name": "Gallery",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "p-6 gap-4 bg-gray-50 min-h-screen" },
+    "children": [
+      {
+        "type": "Text",
+        "key": "gallery-heading",
+        "props": { "as": "h1" },
+        "styling": { "className": "text-2xl font-bold text-gray-900" },
+        "children": "Photo Gallery"
+      },
+      {
+        "type": "Grid",
+        "key": "gallery-grid",
+        "props": { "cols": 3, "gap": "gap-4" },
+        "children": [
+          {
+            "type": "Card",
+            "key": "img-card-1",
+            "props": { "shadow": "sm" },
+            "styling": { "className": "overflow-hidden p-0" },
+            "children": [
+              {
+                "type": "Image",
+                "key": "img-1",
+                "props": {
+                  "src": "https://picsum.photos/seed/timber1/600/400",
+                  "alt": "Gallery image 1",
+                  "objectFit": "cover"
+                },
+                "styling": { "className": "w-full h-48 rounded-xl" }
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "img-card-2",
+            "props": { "shadow": "sm" },
+            "styling": { "className": "overflow-hidden p-0" },
+            "children": [
+              {
+                "type": "Image",
+                "key": "img-2",
+                "props": {
+                  "src": "https://picsum.photos/seed/timber2/600/400",
+                  "alt": "Gallery image 2",
+                  "objectFit": "cover"
+                },
+                "styling": { "className": "w-full h-48 rounded-xl" }
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "img-card-3",
+            "props": { "shadow": "sm" },
+            "styling": { "className": "overflow-hidden p-0" },
+            "children": [
+              {
+                "type": "Image",
+                "key": "img-3",
+                "props": {
+                  "src": "https://picsum.photos/seed/timber3/600/400",
+                  "alt": "Gallery image 3",
+                  "objectFit": "cover"
+                },
+                "styling": { "className": "w-full h-48 rounded-xl" }
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "img-card-4",
+            "props": { "shadow": "sm" },
+            "styling": { "className": "overflow-hidden p-0" },
+            "children": [
+              {
+                "type": "Image",
+                "key": "img-4",
+                "props": {
+                  "src": "https://picsum.photos/seed/timber4/600/400",
+                  "alt": "Gallery image 4",
+                  "objectFit": "cover"
+                },
+                "styling": { "className": "w-full h-48 rounded-xl" }
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "img-card-5",
+            "props": { "shadow": "sm" },
+            "styling": { "className": "overflow-hidden p-0" },
+            "children": [
+              {
+                "type": "Image",
+                "key": "img-5",
+                "props": {
+                  "src": "https://picsum.photos/seed/timber5/600/400",
+                  "alt": "Gallery image 5",
+                  "objectFit": "cover"
+                },
+                "styling": { "className": "w-full h-48 rounded-xl" }
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "img-card-6",
+            "props": { "shadow": "sm" },
+            "styling": { "className": "overflow-hidden p-0" },
+            "children": [
+              {
+                "type": "Image",
+                "key": "img-6",
+                "props": {
+                  "src": "https://picsum.photos/seed/timber6/600/400",
+                  "alt": "Gallery image 6",
+                  "objectFit": "cover"
+                },
+                "styling": { "className": "w-full h-48 rounded-xl" }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

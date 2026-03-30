@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "name": "Bottom Sheet Example",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "p-8 gap-6 min-h-screen bg-gray-50 items-start" },
+    "children": [
+      {
+        "type": "Text",
+        "key": "page-title",
+        "props": { "as": "h1" },
+        "styling": { "className": "text-2xl font-bold text-gray-900" },
+        "children": "Bottom Sheet Demo"
+      },
+      {
+        "type": "Text",
+        "key": "page-desc",
+        "styling": { "className": "text-gray-500 text-sm" },
+        "children": "Click the button below to open the bottom sheet."
+      },
+      {
+        "type": "Button",
+        "key": "open-sheet-btn",
+        "props": { "variant": "primary", "size": "md" },
+        "children": "Open Bottom Sheet"
+      },
+      {
+        "type": "BottomSheet",
+        "key": "options-sheet",
+        "props": {
+          "isOpen": false,
+          "title": "Select an Option",
+          "maxHeight": "max-h-[60vh]"
+        },
+        "children": [
+          {
+            "type": "Column",
+            "key": "sheet-options",
+            "styling": { "className": "gap-3" },
+            "children": [
+              {
+                "type": "Button",
+                "key": "sheet-option-1",
+                "props": { "variant": "secondary", "size": "lg" },
+                "styling": { "className": "w-full" },
+                "children": "Share"
+              },
+              {
+                "type": "Button",
+                "key": "sheet-option-2",
+                "props": { "variant": "secondary", "size": "lg" },
+                "styling": { "className": "w-full" },
+                "children": "Download"
+              },
+              {
+                "type": "Button",
+                "key": "sheet-option-3",
+                "props": { "variant": "destructive", "size": "lg" },
+                "styling": { "className": "w-full" },
+                "children": "Delete"
+              },
+              {
+                "type": "Button",
+                "key": "sheet-close-btn",
+                "props": { "variant": "ghost", "size": "lg" },
+                "styling": { "className": "w-full" },
+                "children": "Cancel"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
