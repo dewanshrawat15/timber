@@ -1,5 +1,5 @@
-import { Component, type ComponentType, type ReactNode } from 'react';
-import { TimberRenderer, Column, Text, Card } from '@timber/core';
+import type { ComponentType } from 'react';
+import { TimberRenderer, TIMBER_REGISTRY, Column, Text, Card } from '@timber/core';
 import type { TimberSchema, TimberNode } from '@timber/core';
 
 // ---------------------------------------------------------------------------
@@ -129,42 +129,45 @@ const INVALID_SCHEMA: TimberSchema = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type RegistryProp = Record<string, ComponentType<any>>;
 
-interface ErrorBoundaryProps {
-  schema: TimberSchema;
-  registry?: RegistryProp;
-  children?: ReactNode;
-}
-
-interface ErrorBoundaryState {
-  error: Error | null;
-}
-
-class ErrorBoundaryInline extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  state: ErrorBoundaryState = { error: null };
-
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { error };
-  }
-
-  // Reset captured error when the schema or registry changes
-  componentDidUpdate(prev: ErrorBoundaryProps) {
-    if (prev.schema !== this.props.schema || prev.registry !== this.props.registry) {
-      this.setState({ error: null });
-    }
-  }
-
-  render() {
-    if (this.state.error) {
-      return (
-        <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-700 font-mono whitespace-pre-wrap">
-          {this.state.error.message}
-        </div>
-      );
-    }
+/**
+ * Walk a node tree and return the first unknown-type error message, or null if
+ * everything is registered. Checking upfront avoids throwing inside a React
+ * render (which triggers Vite's dev overlay even when caught by an ErrorBoundary).
+ */
+function findUnknownType(
+  node: TimberNode,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  registry: Record<string, ComponentType<any>>,
+): string | null {
+  if (!(node.type in registry)) {
     return (
-      <TimberRenderer node={this.props.schema.root} registry={this.props.registry} />
+      `[TimberRenderer] Unknown component type: "${node.type}". ` +
+      `Built-in types are: ${Object.keys(TIMBER_REGISTRY).join(', ')}. ` +
+      `To add custom types, pass a "registry" prop with your component map.`
     );
   }
+  if (Array.isArray(node.children)) {
+    for (const child of node.children) {
+      const err = findUnknownType(child, registry);
+      if (err) return err;
+    }
+  }
+  return null;
+}
+
+function ErrorBoundaryInline({ schema, registry }: { schema: TimberSchema; registry?: RegistryProp }) {
+  const mergedRegistry = { ...TIMBER_REGISTRY, ...(registry ?? {}) };
+  const validationError = findUnknownType(schema.root, mergedRegistry);
+
+  if (validationError) {
+    return (
+      <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-700 font-mono whitespace-pre-wrap">
+        {validationError}
+      </div>
+    );
+  }
+
+  return <TimberRenderer node={schema.root} registry={registry} />;
 }
 
 // ---------------------------------------------------------------------------
