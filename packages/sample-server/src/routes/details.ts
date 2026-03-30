@@ -4,15 +4,27 @@ import gallery from '../schemas/gallery.json';
 import cardList from '../schemas/cardList.json';
 import modal from '../schemas/modal.json';
 import bottomSheet from '../schemas/bottomSheet.json';
+import settings from '../schemas/settings.json';
+import profile from '../schemas/profile.json';
+import dataTable from '../schemas/dataTable.json';
+import formPage from '../schemas/formPage.json';
+import feedbackPage from '../schemas/feedbackPage.json';
 
 const router = Router();
 
 const SCREEN_MAP: Record<string, unknown> = {
+  // Original screens
   dashboard,
   gallery,
   'card-list': cardList,
   modal,
   'bottom-sheet': bottomSheet,
+  // New screens
+  settings,
+  profile,
+  'data-table': dataTable,
+  'form-page': formPage,
+  'feedback-page': feedbackPage,
 };
 
 const VALID_SCREENS = Object.keys(SCREEN_MAP);
@@ -30,7 +42,7 @@ const VALID_SCREENS = Object.keys(SCREEN_MAP);
  *         required: true
  *         schema:
  *           type: string
- *           enum: [dashboard, gallery, card-list, modal, bottom-sheet]
+ *           enum: [dashboard, gallery, card-list, modal, bottom-sheet, settings, profile, data-table, form-page, feedback-page]
  *         description: The screen/layout type to render
  *       - in: query
  *         name: navId

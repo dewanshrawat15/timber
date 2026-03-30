@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "name": "Form Page",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "min-h-screen bg-gray-50 p-6" },
+    "children": [
+      {
+        "type": "Card",
+        "key": "form-card",
+        "props": { "title": "Create Account", "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white max-w-lg mx-auto" },
+        "children": [
+          {
+            "type": "Column",
+            "key": "form-fields",
+            "styling": { "className": "gap-4 mt-3" },
+            "children": [
+              {
+                "type": "Row",
+                "key": "name-row",
+                "styling": { "className": "gap-4" },
+                "children": [
+                  {
+                    "type": "Input",
+                    "key": "first-name",
+                    "props": { "label": "First name", "placeholder": "Jane" }
+                  },
+                  {
+                    "type": "Input",
+                    "key": "last-name",
+                    "props": { "label": "Last name", "placeholder": "Smith" }
+                  }
+                ]
+              },
+              {
+                "type": "Input",
+                "key": "email-field",
+                "props": { "label": "Email address", "type": "email", "placeholder": "jane@example.com" }
+              },
+              {
+                "type": "Input",
+                "key": "password-field",
+                "props": { "label": "Password", "type": "password", "placeholder": "••••••••", "hint": "Minimum 8 characters" }
+              },
+              {
+                "type": "Select",
+                "key": "plan-select",
+                "props": {
+                  "label": "Plan",
+                  "value": "pro",
+                  "options": [
+                    { "label": "Free — $0/mo", "value": "free" },
+                    { "label": "Pro — $12/mo", "value": "pro" },
+                    { "label": "Team — $49/mo", "value": "team" },
+                    { "label": "Enterprise — Contact us", "value": "enterprise" }
+                  ]
+                }
+              },
+              {
+                "type": "Textarea",
+                "key": "bio-field",
+                "props": { "label": "Tell us about yourself", "placeholder": "Optional…", "rows": 3 }
+              },
+              {
+                "type": "Divider",
+                "key": "form-divider"
+              },
+              {
+                "type": "Toggle",
+                "key": "marketing-toggle",
+                "props": { "checked": true, "label": "Marketing emails", "description": "Receive product news and tips" }
+              },
+              {
+                "type": "Checkbox",
+                "key": "terms-checkbox",
+                "props": { "checked": false, "label": "I agree to the Terms of Service", "description": "You must accept to continue" }
+              },
+              {
+                "type": "Alert",
+                "key": "form-info",
+                "props": { "variant": "info", "description": "Your information is encrypted and never shared." }
+              },
+              {
+                "type": "Button",
+                "key": "submit-btn",
+                "props": { "variant": "primary", "size": "lg", "type": "submit" },
+                "styling": { "className": "w-full" },
+                "children": "Create Account"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

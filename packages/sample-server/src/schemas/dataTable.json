@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "name": "Data Table",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "min-h-screen bg-gray-50 p-6 gap-4" },
+    "children": [
+      {
+        "type": "Row",
+        "key": "header",
+        "styling": { "className": "items-center justify-between" },
+        "children": [
+          {
+            "type": "Text",
+            "key": "title",
+            "props": { "as": "h1" },
+            "styling": { "className": "text-2xl font-bold text-gray-900" },
+            "children": "Users"
+          },
+          {
+            "type": "Row",
+            "key": "header-actions",
+            "styling": { "className": "gap-3" },
+            "children": [
+              {
+                "type": "Input",
+                "key": "search",
+                "props": { "placeholder": "Search users…", "size": "sm" },
+                "styling": { "className": "w-52" }
+              },
+              {
+                "type": "Button",
+                "key": "invite-btn",
+                "props": { "variant": "primary", "size": "sm" },
+                "children": "Invite User"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "key": "table-card",
+        "props": { "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white p-0 overflow-hidden" },
+        "children": [
+          {
+            "type": "Table",
+            "key": "users-table",
+            "props": {
+              "striped": true,
+              "bordered": false,
+              "columns": [
+                { "key": "name",   "header": "Name"   },
+                { "key": "email",  "header": "Email"  },
+                { "key": "role",   "header": "Role"   },
+                { "key": "status", "header": "Status" },
+                { "key": "joined", "header": "Joined" }
+              ],
+              "rows": [
+                { "name": "Alex Johnson",   "email": "alex@example.com",   "role": "Admin",   "status": "Active",    "joined": "Jan 2024" },
+                { "name": "Maria Garcia",   "email": "maria@example.com",  "role": "Editor",  "status": "Active",    "joined": "Feb 2024" },
+                { "name": "James Lee",      "email": "james@example.com",  "role": "Viewer",  "status": "Inactive",  "joined": "Mar 2024" },
+                { "name": "Sofia Chen",     "email": "sofia@example.com",  "role": "Editor",  "status": "Active",    "joined": "Apr 2024" },
+                { "name": "Liam Patel",     "email": "liam@example.com",   "role": "Viewer",  "status": "Pending",   "joined": "May 2024" }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -3,12 +3,22 @@ import { ServerDrivenDemo } from './demos/ServerDrivenDemo';
 import { ComponentsDemo } from './demos/ComponentsDemo';
 import { OverlaysDemo } from './demos/OverlaysDemo';
 import { CustomRendererDemo } from './demos/CustomRendererDemo';
+import { FormsDemo } from './demos/FormsDemo';
+import { FeedbackDemo } from './demos/FeedbackDemo';
+import { NavigationDemo } from './demos/NavigationDemo';
+import { DataDemo } from './demos/DataDemo';
+import { MarketplaceDemo } from './demos/MarketplaceDemo';
 
 const TABS = [
   { id: 'server', label: 'Server-Driven UI' },
   { id: 'components', label: 'Components' },
   { id: 'overlays', label: 'Overlays' },
   { id: 'custom', label: 'Custom Renderer' },
+  { id: 'forms', label: 'Forms' },
+  { id: 'feedback', label: 'Feedback' },
+  { id: 'navigation', label: 'Navigation' },
+  { id: 'data', label: 'Data' },
+  { id: 'marketplace', label: 'Marketplace' },
 ] as const;
 
 type TabId = (typeof TABS)[number]['id'];
@@ -67,6 +77,11 @@ export function App() {
         {activeTab === 'components' && <ComponentsDemo />}
         {activeTab === 'overlays' && <OverlaysDemo />}
         {activeTab === 'custom' && <CustomRendererDemo />}
+        {activeTab === 'forms' && <FormsDemo />}
+        {activeTab === 'feedback' && <FeedbackDemo />}
+        {activeTab === 'navigation' && <NavigationDemo />}
+        {activeTab === 'data' && <DataDemo />}
+        {activeTab === 'marketplace' && <MarketplaceDemo />}
       </main>
     </div>
   );

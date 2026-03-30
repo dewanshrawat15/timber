@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "name": "Feedback Components",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "min-h-screen bg-gray-50 p-6 gap-8" },
+    "children": [
+      {
+        "type": "Text",
+        "key": "page-title",
+        "props": { "as": "h1" },
+        "styling": { "className": "text-2xl font-bold text-gray-900" },
+        "children": "Feedback Components"
+      },
+      {
+        "type": "Card",
+        "key": "badges-card",
+        "props": { "title": "Badges", "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Row",
+            "key": "badges-row",
+            "styling": { "className": "flex-wrap gap-3 mt-3" },
+            "children": [
+              { "type": "Badge", "key": "bd-default",  "props": { "label": "Default",  "variant": "default"  } },
+              { "type": "Badge", "key": "bd-primary",  "props": { "label": "Primary",  "variant": "primary"  } },
+              { "type": "Badge", "key": "bd-success",  "props": { "label": "Success",  "variant": "success"  } },
+              { "type": "Badge", "key": "bd-warning",  "props": { "label": "Warning",  "variant": "warning"  } },
+              { "type": "Badge", "key": "bd-error",    "props": { "label": "Error",    "variant": "error"    } },
+              { "type": "Badge", "key": "bd-dot",      "props": { "label": "Live",     "variant": "success", "dot": true } }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "key": "alerts-card",
+        "props": { "title": "Alerts", "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Column",
+            "key": "alerts-col",
+            "styling": { "className": "gap-3 mt-3" },
+            "children": [
+              { "type": "Alert", "key": "al-info",    "props": { "variant": "info",    "title": "Heads up",      "description": "A new software update is available." } },
+              { "type": "Alert", "key": "al-success", "props": { "variant": "success", "title": "All done!",     "description": "Your changes have been saved." } },
+              { "type": "Alert", "key": "al-warning", "props": { "variant": "warning", "title": "Be careful",    "description": "This action may affect other users." } },
+              { "type": "Alert", "key": "al-error",   "props": { "variant": "error",   "title": "Error occurred","description": "Something went wrong. Please try again.", "dismissible": true } }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "key": "spinners-card",
+        "props": { "title": "Spinners", "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Row",
+            "key": "spinners-row",
+            "styling": { "className": "items-center gap-6 mt-3" },
+            "children": [
+              { "type": "Spinner", "key": "sp-sm", "props": { "size": "sm", "color": "indigo" } },
+              { "type": "Spinner", "key": "sp-md", "props": { "size": "md", "color": "indigo" } },
+              { "type": "Spinner", "key": "sp-lg", "props": { "size": "lg", "color": "indigo" } },
+              { "type": "Spinner", "key": "sp-green", "props": { "size": "md", "color": "green" } },
+              { "type": "Spinner", "key": "sp-red",   "props": { "size": "md", "color": "red"   } }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "key": "progress-card",
+        "props": { "title": "Progress", "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Column",
+            "key": "progress-col",
+            "styling": { "className": "gap-4 mt-3" },
+            "children": [
+              { "type": "Progress", "key": "pr-1", "props": { "value": 72,  "color": "indigo", "label": "Upload",   "showLabel": true } },
+              { "type": "Progress", "key": "pr-2", "props": { "value": 45,  "color": "green",  "label": "Storage",  "showLabel": true } },
+              { "type": "Progress", "key": "pr-3", "props": { "value": 90,  "color": "yellow", "label": "CPU",      "showLabel": true, "size": "sm" } },
+              { "type": "Progress", "key": "pr-4", "props": { "value": 100, "color": "green",  "label": "Complete", "showLabel": true, "size": "lg" } }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

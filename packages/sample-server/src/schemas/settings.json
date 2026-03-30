@@ -1,0 +1,115 @@
+{
+  "version": "1.0",
+  "name": "Settings",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "min-h-screen bg-gray-50 p-6 gap-6 max-w-2xl mx-auto" },
+    "children": [
+      {
+        "type": "Text",
+        "key": "page-title",
+        "props": { "as": "h1" },
+        "styling": { "className": "text-2xl font-bold text-gray-900" },
+        "children": "Settings"
+      },
+      {
+        "type": "Card",
+        "key": "profile-section",
+        "props": { "title": "Profile", "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Column",
+            "key": "profile-fields",
+            "styling": { "className": "gap-4 mt-2" },
+            "children": [
+              {
+                "type": "Input",
+                "key": "display-name",
+                "props": { "label": "Display Name", "placeholder": "Your name", "defaultValue": "Alex Johnson" }
+              },
+              {
+                "type": "Input",
+                "key": "email",
+                "props": { "label": "Email", "type": "email", "placeholder": "email@example.com", "defaultValue": "alex@example.com" }
+              },
+              {
+                "type": "Select",
+                "key": "language",
+                "props": {
+                  "label": "Language",
+                  "value": "en",
+                  "options": [
+                    { "label": "English", "value": "en" },
+                    { "label": "Spanish", "value": "es" },
+                    { "label": "French", "value": "fr" },
+                    { "label": "German", "value": "de" }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "key": "notifications-section",
+        "props": { "title": "Notifications", "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Column",
+            "key": "notification-toggles",
+            "styling": { "className": "gap-4 mt-2" },
+            "children": [
+              {
+                "type": "Toggle",
+                "key": "email-notifs",
+                "props": { "checked": true, "label": "Email notifications", "description": "Receive updates via email" }
+              },
+              {
+                "type": "Divider",
+                "key": "div-1"
+              },
+              {
+                "type": "Toggle",
+                "key": "push-notifs",
+                "props": { "checked": false, "label": "Push notifications", "description": "Browser and mobile push alerts" }
+              },
+              {
+                "type": "Divider",
+                "key": "div-2"
+              },
+              {
+                "type": "Toggle",
+                "key": "marketing-notifs",
+                "props": { "checked": true, "label": "Marketing emails", "description": "Product news and tips" }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "key": "danger-section",
+        "props": { "title": "Danger Zone", "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Alert",
+            "key": "danger-alert",
+            "props": { "variant": "warning", "title": "Proceed with caution", "description": "These actions are irreversible." },
+            "styling": { "className": "mt-2 mb-4" }
+          },
+          {
+            "type": "Button",
+            "key": "delete-account",
+            "props": { "variant": "destructive", "size": "md" },
+            "children": "Delete Account"
+          }
+        ]
+      }
+    ]
+  }
+}

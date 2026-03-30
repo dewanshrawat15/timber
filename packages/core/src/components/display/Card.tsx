@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, MouseEventHandler, ReactNode } from 'react';
 
 export type CardShadow = 'none' | 'sm' | 'md' | 'lg';
 
@@ -11,6 +11,7 @@ export interface CardProps {
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 const SHADOW_CLASSES: Record<CardShadow, string> = {
@@ -29,18 +30,20 @@ export function Card({
   children,
   className,
   style,
+  onClick,
 }: CardProps) {
   const classes = [
     'rounded-xl bg-white p-4',
     bordered ? 'border border-gray-200' : '',
     SHADOW_CLASSES[shadow],
+    onClick ? 'cursor-pointer' : '',
     className ?? '',
   ]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <div className={classes} style={style}>
+    <div className={classes} style={style} onClick={onClick}>
       {(title || subtitle) && (
         <div className="mb-3">
           {title && (

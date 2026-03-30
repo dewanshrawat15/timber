@@ -318,9 +318,6 @@ function Example() {
           <Button variant="secondary" className="w-full" onClick={() => setOpen(false)}>
             Share
           </Button>
-          <Button variant="ghost" className="w-full" onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
         </Column>
       </BottomSheet>
     </>
@@ -334,6 +331,470 @@ function Example() {
 | `onClose` | `() => void` | **required** | Called when backdrop or Escape is pressed |
 | `title` | `string` | — | Sheet title |
 | `maxHeight` | `string` | `'max-h-[80vh]'` | Tailwind `max-h-*` class |
+| `className` | `string` | — | Additional Tailwind classes on the panel |
+
+---
+
+### Form
+
+#### `Input`
+
+```tsx
+import { Input } from '@timber/core';
+
+<Input
+  label="Email"
+  type="email"
+  placeholder="you@example.com"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  hint="We'll never share your email."
+/>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Label text above the input |
+| `type` | `string` | `'text'` | HTML input type |
+| `placeholder` | `string` | — | Placeholder text |
+| `value` | `string` | — | Controlled value |
+| `defaultValue` | `string` | — | Uncontrolled default value |
+| `onChange` | `ChangeEventHandler<HTMLInputElement>` | — | Change handler |
+| `hint` | `string` | — | Helper text below the input |
+| `error` | `string` | — | Error message (renders input in error state) |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Input height |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Textarea`
+
+```tsx
+import { Textarea } from '@timber/core';
+
+<Textarea
+  label="Bio"
+  placeholder="Tell us about yourself…"
+  rows={4}
+  value={bio}
+  onChange={(e) => setBio(e.target.value)}
+/>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Label text |
+| `placeholder` | `string` | — | Placeholder text |
+| `value` | `string` | — | Controlled value |
+| `defaultValue` | `string` | — | Uncontrolled default value |
+| `onChange` | `ChangeEventHandler<HTMLTextareaElement>` | — | Change handler |
+| `rows` | `number` | `3` | Number of visible rows |
+| `hint` | `string` | — | Helper text |
+| `error` | `string` | — | Error message |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Select`
+
+Built on HeadlessUI `Listbox` for full keyboard and screen-reader support.
+
+```tsx
+import { Select } from '@timber/core';
+
+<Select
+  label="Plan"
+  value={plan}
+  onChange={setPlan}
+  options={[
+    { label: 'Free', value: 'free' },
+    { label: 'Pro — $12/mo', value: 'pro' },
+    { label: 'Enterprise', value: 'enterprise' },
+  ]}
+/>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Label text |
+| `value` | `string` | **required** | Currently selected value |
+| `onChange` | `(value: string) => void` | **required** | Called with the new value |
+| `options` | `{ label: string; value: string }[]` | **required** | Available options |
+| `placeholder` | `string` | — | Shown when value is empty |
+| `error` | `string` | — | Error message |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Checkbox`
+
+Built on HeadlessUI for accessibility.
+
+```tsx
+import { Checkbox } from '@timber/core';
+
+<Checkbox
+  checked={agreed}
+  onChange={setAgreed}
+  label="I agree to the Terms of Service"
+  description="You must accept to continue."
+/>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | `boolean` | **required** | Checked state |
+| `onChange` | `(checked: boolean) => void` | **required** | Change handler |
+| `label` | `string` | — | Label text |
+| `description` | `string` | — | Secondary text below label |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Toggle`
+
+A switch built on HeadlessUI `Switch`.
+
+```tsx
+import { Toggle } from '@timber/core';
+
+<Toggle
+  checked={notifications}
+  onChange={setNotifications}
+  label="Email notifications"
+  description="Receive updates via email."
+  size="md"
+/>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | `boolean` | **required** | On/off state |
+| `onChange` | `(checked: boolean) => void` | **required** | Change handler |
+| `label` | `string` | — | Label text |
+| `description` | `string` | — | Secondary text |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Toggle size |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+### Feedback
+
+#### `Badge`
+
+```tsx
+import { Badge } from '@timber/core';
+
+<Badge label="Active" variant="success" dot size="sm" />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | **required** | Badge text |
+| `variant` | `'default' \| 'primary' \| 'success' \| 'warning' \| 'error'` | `'default'` | Color variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size |
+| `dot` | `boolean` | `false` | Shows a colored dot before the label |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Alert`
+
+```tsx
+import { Alert } from '@timber/core';
+
+<Alert
+  variant="warning"
+  title="Storage almost full"
+  description="You've used 90% of your quota."
+  dismissible
+/>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Color and icon style |
+| `title` | `string` | — | Bold heading |
+| `description` | `string` | — | Body text |
+| `dismissible` | `boolean` | `false` | Shows a close button |
+| `onDismiss` | `() => void` | — | Called when dismissed (optional; component manages internal state) |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Spinner`
+
+```tsx
+import { Spinner } from '@timber/core';
+
+<Spinner size="md" color="indigo" />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Spinner diameter |
+| `color` | `'indigo' \| 'green' \| 'red' \| 'gray' \| 'white'` | `'indigo'` | Spinner color |
+| `label` | `string` | `'Loading…'` | Screen-reader accessible label |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Skeleton`
+
+```tsx
+import { Skeleton } from '@timber/core';
+
+{/* Single bar */}
+<Skeleton height="1rem" width="60%" rounded="md" />
+
+{/* Multi-line text placeholder */}
+<Skeleton lines={3} />
+
+{/* Avatar placeholder */}
+<Skeleton width="3rem" height="3rem" rounded="full" />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `width` | `string` | `'100%'` | CSS width |
+| `height` | `string` | `'1rem'` | CSS height |
+| `rounded` | `'none' \| 'sm' \| 'md' \| 'lg' \| 'full'` | `'md'` | Border radius |
+| `lines` | `number` | — | Renders N stacked lines of varying width |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Progress`
+
+```tsx
+import { Progress } from '@timber/core';
+
+<Progress value={72} color="indigo" label="Upload" showLabel size="md" />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | **required** | Current value (0–`max`) |
+| `max` | `number` | `100` | Maximum value |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Bar height |
+| `color` | `'indigo' \| 'green' \| 'yellow' \| 'red'` | `'indigo'` | Fill color |
+| `label` | `string` | — | Text shown above the bar |
+| `showLabel` | `boolean` | `false` | Also shows the percentage value |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+### Navigation
+
+#### `Tabs`
+
+Built on HeadlessUI `TabGroup`.
+
+```tsx
+import { Tabs } from '@timber/core';
+
+<Tabs
+  tabs={[
+    { key: 'overview', label: 'Overview' },
+    { key: 'settings', label: 'Settings' },
+    { key: 'billing',  label: 'Billing', disabled: true },
+  ]}
+  activeTab={tab}
+  onChange={setTab}
+  variant="underline"
+/>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `tabs` | `{ key: string; label: string; disabled?: boolean }[]` | **required** | Tab definitions |
+| `activeTab` | `string` | **required** | Key of the currently active tab |
+| `onChange` | `(key: string) => void` | **required** | Called with the key of the clicked tab |
+| `variant` | `'underline' \| 'pills'` | `'underline'` | Visual style |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Breadcrumb`
+
+```tsx
+import { Breadcrumb } from '@timber/core';
+
+<Breadcrumb
+  items={[
+    { label: 'Home',      href: '/' },
+    { label: 'Products',  href: '/products' },
+    { label: 'Detail' },
+  ]}
+  separator="/"
+/>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `{ label: string; href?: string }[]` | **required** | Breadcrumb items. Last item is always non-linked. |
+| `separator` | `string` | `'/'` | Separator character between items |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Navbar`
+
+```tsx
+import { Navbar, Button } from '@timber/core';
+
+<Navbar
+  brand={<span className="font-bold text-gray-900">Acme</span>}
+  links={[
+    { label: 'Home',    href: '/',        active: true },
+    { label: 'Pricing', href: '/pricing'              },
+  ]}
+  actions={
+    <>
+      <Button variant="ghost" size="sm">Log in</Button>
+      <Button variant="primary" size="sm">Sign up</Button>
+    </>
+  }
+/>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `brand` | `ReactNode` | — | Logo / wordmark rendered on the left |
+| `links` | `{ label: string; href?: string; active?: boolean; onClick?: () => void }[]` | — | Navigation links |
+| `actions` | `ReactNode` | — | Slot rendered on the right (buttons, avatar, etc.) |
+| `sticky` | `boolean` | `false` | Sticks the navbar to the top of the viewport |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+### Data
+
+#### `Avatar`
+
+```tsx
+import { Avatar } from '@timber/core';
+
+{/* With image */}
+<Avatar src="https://example.com/avatar.jpg" alt="Jordan Lee" size="md" />
+
+{/* Initials fallback */}
+<Avatar name="Jordan Lee" size="md" shape="circle" />
+
+{/* No src or name — generic placeholder */}
+<Avatar size="md" />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `src` | `string` | — | Image URL |
+| `alt` | `string` | — | Alt text for the image |
+| `name` | `string` | — | Used to generate initials and a deterministic background color when no `src` is provided |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Avatar diameter |
+| `shape` | `'circle' \| 'square'` | `'circle'` | Border radius |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Divider`
+
+```tsx
+import { Divider } from '@timber/core';
+
+{/* Horizontal */}
+<Divider label="or continue with" />
+
+{/* Vertical (inside a Row) */}
+<Row className="h-8">
+  <span>Home</span>
+  <Divider orientation="vertical" />
+  <span>About</span>
+</Row>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction |
+| `label` | `string` | — | Optional centred label (horizontal only) |
+| `className` | `string` | — | Additional Tailwind classes |
+
+---
+
+#### `Table`
+
+```tsx
+import { Table } from '@timber/core';
+import type { TableColumn } from '@timber/core';
+
+const columns: TableColumn[] = [
+  { key: 'name',  header: 'Name' },
+  { key: 'email', header: 'Email' },
+  {
+    key: 'status',
+    header: 'Status',
+    render: (val) => <Badge label={String(val)} variant="success" size="sm" />,
+  },
+];
+
+<Table columns={columns} rows={users} striped emptyMessage="No users found." />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `columns` | `TableColumn[]` | **required** | Column definitions |
+| `rows` | `Record<string, unknown>[]` | **required** | Data rows |
+| `striped` | `boolean` | `false` | Alternating row background |
+| `bordered` | `boolean` | `false` | Adds cell borders |
+| `emptyMessage` | `string` | `'No data.'` | Shown when `rows` is empty |
+| `className` | `string` | — | Additional Tailwind classes |
+
+**`TableColumn` shape:**
+
+```ts
+interface TableColumn {
+  key: string;
+  header: string;
+  width?: string;
+  render?: (value: unknown, row: Record<string, unknown>) => ReactNode;
+}
+```
+
+---
+
+#### `Drawer`
+
+A side panel built on HeadlessUI `Dialog`.
+
+```tsx
+import { useState } from 'react';
+import { Drawer, Button } from '@timber/core';
+
+function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Drawer</Button>
+      <Drawer isOpen={open} onClose={() => setOpen(false)} title="Settings" side="right" size="md">
+        <p>Drawer content here.</p>
+      </Drawer>
+    </>
+  );
+}
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isOpen` | `boolean` | **required** | Controls visibility |
+| `onClose` | `() => void` | **required** | Called when backdrop or Escape is pressed |
+| `title` | `string` | — | Panel heading |
+| `side` | `'left' \| 'right'` | `'right'` | Which edge to slide in from |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Panel width |
 | `className` | `string` | — | Additional Tailwind classes on the panel |
 
 ---
@@ -394,16 +855,32 @@ interface TimberSchema {
 }
 
 interface TimberNode {
-  type: TimberNodeType;          // 'Row' | 'Column' | 'Grid' | 'Image' | 'Card' | 'Text' | 'Button' | 'Modal' | 'BottomSheet'
-  key?: string;                  // stable React key; also used to look up overrides
+  type: TimberNodeType;
+  key?: string;                   // stable React key; also used to look up overrides
   props?: Record<string, unknown>;
   styling?: {
-    className?: string;          // Tailwind utility classes
-    style?: CSSProperties;       // inline styles for dynamic values
+    className?: string;           // Tailwind utility classes
+    style?: CSSProperties;        // inline styles for dynamic values
   };
   children?: TimberNode[] | string;
   data?: Record<string, unknown>;
 }
+
+type TimberNodeType =
+  // Layout
+  'Row' | 'Column' | 'Grid' |
+  // Display
+  'Image' | 'Card' | 'Text' | 'Button' |
+  // Overlay
+  'Modal' | 'BottomSheet' |
+  // Form
+  'Input' | 'Textarea' | 'Select' | 'Checkbox' | 'Toggle' |
+  // Feedback
+  'Badge' | 'Alert' | 'Spinner' | 'Skeleton' | 'Progress' |
+  // Navigation
+  'Tabs' | 'Breadcrumb' | 'Navbar' |
+  // Data
+  'Avatar' | 'Divider' | 'Table' | 'Drawer';
 ```
 
 ### Handling interactive state
@@ -427,21 +904,18 @@ const [open, setOpen] = useState(false);
 Pass custom components via the `registry` prop. They are merged with the built-in registry:
 
 ```tsx
-function Badge({ label, color = 'blue' }) {
-  return <span className={`badge-${color}`}>{label}</span>;
+function Tag({ label, color = 'blue' }) {
+  return <span className={`badge badge-${color}`}>{label}</span>;
 }
 
-<TimberRenderer
-  node={schema.root}
-  registry={{ Badge }}
-/>
+<TimberRenderer node={schema.root} registry={{ Tag }} />
 ```
 
-Schemas can then use `"type": "Badge"`. Any type not found in the merged registry throws:
+Schemas can then use `"type": "Tag"`. Any type not found in the merged registry throws a descriptive error:
 
 ```
 [TimberRenderer] Unknown component type: "UnknownWidget".
-Built-in types are: Row, Column, Grid, Image, Card, Text, Button, Modal, BottomSheet.
+Built-in types are: Row, Column, Grid, ...
 To add custom types, pass a "registry" prop with your component map.
 ```
 
@@ -464,6 +938,11 @@ GET /api/details?screen={screenType}&navId={navId}
 | `card-list` | Scrollable column of article cards |
 | `modal` | Page with a button and a Modal node |
 | `bottom-sheet` | Page with a button and a BottomSheet node |
+| `settings` | Settings page with Input, Select, and Toggle groups |
+| `profile` | Profile page with Avatar + stats grid |
+| `data-table` | Card wrapping a Table with 5 rows of user data |
+| `form-page` | Column with Input, Textarea, Select, Checkbox, Toggle |
+| `feedback-page` | Column of Alert variants, Badge row, Spinner, Progress |
 
 Returns `400` with a descriptive error for unknown or missing `screen` values.
 
@@ -476,6 +955,12 @@ Full API documentation available at [http://localhost:3001/docs](http://localhos
 ```bash
 yarn dev:server
 ```
+
+---
+
+## Custom components
+
+See [packages/core/CONTRIBUTING.md](packages/core/CONTRIBUTING.md) for a complete step-by-step guide to adding your own components — including a full worked `Tag` component example, HeadlessUI usage patterns, styling conventions, and a TypeScript checklist.
 
 ---
 

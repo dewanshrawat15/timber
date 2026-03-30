@@ -8,15 +8,39 @@ export interface TimberStyle {
 }
 
 export type TimberNodeType =
+  // Layout
   | 'Row'
   | 'Column'
   | 'Grid'
+  // Display
   | 'Image'
   | 'Card'
   | 'Text'
   | 'Button'
+  // Overlay
   | 'Modal'
-  | 'BottomSheet';
+  | 'BottomSheet'
+  // Form
+  | 'Input'
+  | 'Textarea'
+  | 'Select'
+  | 'Checkbox'
+  | 'Toggle'
+  // Feedback
+  | 'Badge'
+  | 'Alert'
+  | 'Spinner'
+  | 'Skeleton'
+  | 'Progress'
+  // Navigation
+  | 'Tabs'
+  | 'Breadcrumb'
+  | 'Navbar'
+  // Data
+  | 'Avatar'
+  | 'Divider'
+  | 'Table'
+  | 'Drawer';
 
 export interface TimberNode {
   /** Which registered component to render */

@@ -1,0 +1,152 @@
+{
+  "version": "1.0",
+  "name": "User Profile",
+  "root": {
+    "type": "Column",
+    "key": "root",
+    "styling": { "className": "min-h-screen bg-gray-50 p-6 gap-6 max-w-3xl mx-auto" },
+    "children": [
+      {
+        "type": "Breadcrumb",
+        "key": "breadcrumb",
+        "props": { "items": [{ "label": "Home", "href": "#" }, { "label": "Team", "href": "#" }, { "label": "Alex Johnson" }] }
+      },
+      {
+        "type": "Card",
+        "key": "profile-header",
+        "props": { "shadow": "md" },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Row",
+            "key": "profile-row",
+            "styling": { "className": "items-center gap-5" },
+            "children": [
+              {
+                "type": "Avatar",
+                "key": "avatar",
+                "props": { "name": "Alex Johnson", "size": "xl", "shape": "circle" }
+              },
+              {
+                "type": "Column",
+                "key": "profile-info",
+                "styling": { "className": "gap-1 flex-1" },
+                "children": [
+                  {
+                    "type": "Text",
+                    "key": "name",
+                    "props": { "as": "h2" },
+                    "styling": { "className": "text-xl font-bold text-gray-900" },
+                    "children": "Alex Johnson"
+                  },
+                  {
+                    "type": "Text",
+                    "key": "role",
+                    "styling": { "className": "text-sm text-gray-500" },
+                    "children": "Senior Product Designer · San Francisco, CA"
+                  },
+                  {
+                    "type": "Row",
+                    "key": "badges",
+                    "styling": { "className": "gap-2 mt-1" },
+                    "children": [
+                      { "type": "Badge", "key": "b1", "props": { "label": "Pro", "variant": "primary", "dot": true } },
+                      { "type": "Badge", "key": "b2", "props": { "label": "Verified", "variant": "success" } }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "Button",
+                "key": "edit-btn",
+                "props": { "variant": "secondary", "size": "sm" },
+                "children": "Edit Profile"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Grid",
+        "key": "stats-grid",
+        "props": { "cols": 3, "gap": "gap-4" },
+        "children": [
+          {
+            "type": "Card",
+            "key": "stat-projects",
+            "props": { "shadow": "sm", "bordered": true },
+            "styling": { "className": "bg-white text-center" },
+            "children": [
+              {
+                "type": "Text",
+                "key": "stat-projects-val",
+                "styling": { "className": "text-3xl font-bold text-indigo-600" },
+                "children": "48"
+              },
+              {
+                "type": "Text",
+                "key": "stat-projects-label",
+                "styling": { "className": "text-sm text-gray-500 mt-1" },
+                "children": "Projects"
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "stat-reviews",
+            "props": { "shadow": "sm", "bordered": true },
+            "styling": { "className": "bg-white text-center" },
+            "children": [
+              {
+                "type": "Text",
+                "key": "stat-reviews-val",
+                "styling": { "className": "text-3xl font-bold text-green-600" },
+                "children": "4.9"
+              },
+              {
+                "type": "Text",
+                "key": "stat-reviews-label",
+                "styling": { "className": "text-sm text-gray-500 mt-1" },
+                "children": "Avg Rating"
+              }
+            ]
+          },
+          {
+            "type": "Card",
+            "key": "stat-sales",
+            "props": { "shadow": "sm", "bordered": true },
+            "styling": { "className": "bg-white text-center" },
+            "children": [
+              {
+                "type": "Text",
+                "key": "stat-sales-val",
+                "styling": { "className": "text-3xl font-bold text-orange-500" },
+                "children": "$12.4k"
+              },
+              {
+                "type": "Text",
+                "key": "stat-sales-label",
+                "styling": { "className": "text-sm text-gray-500 mt-1" },
+                "children": "Total Sales"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Card",
+        "key": "bio-card",
+        "props": { "title": "About", "shadow": "md", "bordered": true },
+        "styling": { "className": "bg-white" },
+        "children": [
+          {
+            "type": "Text",
+            "key": "bio",
+            "styling": { "className": "text-sm text-gray-600 mt-2 leading-relaxed" },
+            "children": "Passionate product designer with 8+ years of experience building digital products. Specialises in design systems, UX strategy, and turning complex problems into elegant interfaces."
+          }
+        ]
+      }
+    ]
+  }
+}
