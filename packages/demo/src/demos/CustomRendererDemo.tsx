@@ -1,6 +1,6 @@
+import { Component, type ComponentType, type ReactNode } from 'react';
 import { TimberRenderer, Column, Text, Card } from '@timber/core';
 import type { TimberSchema, TimberNode } from '@timber/core';
-import type { ComponentType } from 'react';
 
 // ---------------------------------------------------------------------------
 // 1. Custom component not in the default registry
@@ -126,21 +126,43 @@ const INVALID_SCHEMA: TimberSchema = {
   },
 };
 
-function ErrorBoundaryInline({
-  schema,
-  registry,
-}: {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type RegistryProp = Record<string, ComponentType<any>>;
+
+interface ErrorBoundaryProps {
   schema: TimberSchema;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  registry?: Record<string, ComponentType<any>>;
-}) {
-  try {
-    return <TimberRenderer node={schema.root} registry={registry} />;
-  } catch (e) {
+  registry?: RegistryProp;
+  children?: ReactNode;
+}
+
+interface ErrorBoundaryState {
+  error: Error | null;
+}
+
+class ErrorBoundaryInline extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  state: ErrorBoundaryState = { error: null };
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { error };
+  }
+
+  // Reset captured error when the schema or registry changes
+  componentDidUpdate(prev: ErrorBoundaryProps) {
+    if (prev.schema !== this.props.schema || prev.registry !== this.props.registry) {
+      this.setState({ error: null });
+    }
+  }
+
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-700 font-mono whitespace-pre-wrap">
+          {this.state.error.message}
+        </div>
+      );
+    }
     return (
-      <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-700 font-mono whitespace-pre-wrap">
-        {e instanceof Error ? e.message : String(e)}
-      </div>
+      <TimberRenderer node={this.props.schema.root} registry={this.props.registry} />
     );
   }
 }
