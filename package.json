@@ -6,8 +6,10 @@
   ],
   "scripts": {
     "build": "yarn workspace @timber/core build",
+    "build:demo": "yarn workspace @timber/demo build",
     "dev:server": "yarn workspace @timber/sample-server dev",
     "dev:demo": "yarn workspace @timber/demo dev",
+    "preview:demo": "yarn workspace @timber/demo preview",
     "typecheck": "tsc --build"
   },
   "devDependencies": {
