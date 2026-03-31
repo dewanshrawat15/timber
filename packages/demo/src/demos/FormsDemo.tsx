@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import { Input, Textarea, Select, Checkbox, Toggle, Button, Column, Row, Card, Text, Alert, Divider } from '@timber/core';
 
@@ -173,21 +174,21 @@ export function FormsDemo() {
                 label="Email address"
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                 placeholder="you@example.com"
               />
               <Input
                 label="Password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 hint="Minimum 8 characters"
               />
               <Textarea
                 label="Bio (optional)"
                 value={bio}
-                onChange={(e) => setBio(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setBio(e.target.value)}
                 placeholder="A few words about you…"
                 rows={3}
               />

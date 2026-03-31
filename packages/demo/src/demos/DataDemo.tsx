@@ -25,16 +25,24 @@ const STATUS_VARIANT: Record<string, 'success' | 'default' | 'warning'> = {
   Pending: 'warning',
 };
 
-const TABLE_COLUMNS: TableColumn[] = [
+type UserRow = {
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+  joined: string;
+};
+
+const TABLE_COLUMNS: TableColumn<UserRow>[] = [
   {
     key: 'name',
     header: 'User',
     render: (_val, row) => (
       <Row gap="gap-2" align="items-center">
-        <Avatar name={String(row['name'])} size="sm" />
+        <Avatar name={row.name} size="sm" />
         <Column gap="gap-0">
-          <Text className="text-sm font-medium text-gray-900">{String(row['name'])}</Text>
-          <Text className="text-xs text-gray-400">{String(row['email'])}</Text>
+          <Text className="text-sm font-medium text-gray-900">{row.name}</Text>
+          <Text className="text-xs text-gray-400">{row.email}</Text>
         </Column>
       </Row>
     ),

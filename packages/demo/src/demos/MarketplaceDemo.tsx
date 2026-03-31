@@ -1,3 +1,4 @@
+import type { ChangeEvent, MouseEvent } from 'react';
 import { useState } from 'react';
 import {
   Avatar, Badge, Button, Card, Column, Divider, Drawer,
@@ -82,20 +83,59 @@ const STATUS_VARIANT: Record<string, 'success' | 'warning' | 'error' | 'default'
 
 /* ─────────────────────────────────────────── table columns ── */
 
-const PRODUCTS_COLUMNS: TableColumn[] = [
+const PRODUCTS_COLUMNS: TableColumn<Product>[] = [
   { key: 'title',    header: 'Product' },
-  { key: 'category', header: 'Category', render: (val) => <Badge label={String(val)} variant={CATEGORY_BADGE[String(val)] ?? 'default'} size="sm" /> },
-  { key: 'price',    header: 'Price',    render: (val) => <Text className="text-sm font-medium">${String(val)}</Text> },
-  { key: 'sales',    header: 'Sales',    render: (val) => <Text className="text-sm text-gray-600">{Number(val).toLocaleString()}</Text> },
-  { key: 'status',   header: 'Status',   render: (val) => <Badge label={String(val)} variant={STATUS_VARIANT[String(val)] ?? 'default'} dot size="sm" /> },
+  {
+    key: 'category',
+    header: 'Category',
+    render: (val) => (
+      <Badge
+        label={val}
+        variant={CATEGORY_BADGE[val] ?? 'default'}
+        size="sm"
+      />
+    ),
+  },
+  {
+    key: 'price',
+    header: 'Price',
+    render: (val) => (
+      <Text className="text-sm font-medium">
+        ${val}
+      </Text>
+    ),
+  },
+  {
+    key: 'sales',
+    header: 'Sales',
+    render: (val) => (
+      <Text className="text-sm text-gray-600">
+        {val.toLocaleString()}
+      </Text>
+    ),
+  },
+  {
+    key: 'status',
+    header: 'Status',
+    render: (val) => (
+      <Badge
+        label={val}
+        variant={STATUS_VARIANT[val] ?? 'default'}
+        dot
+        size="sm"
+      />
+    ),
+  },
 ];
 
-const ORDERS_COLUMNS: TableColumn[] = [
+type OrderRow = (typeof ORDERS)[number];
+
+const ORDERS_COLUMNS: TableColumn<OrderRow>[] = [
   { key: 'id',       header: 'Order' },
   { key: 'customer', header: 'Customer', render: (_val, row) => (
     <Row gap="gap-2" align="items-center">
-      <Avatar name={String(row['customer'])} size="sm" />
-      <Text className="text-sm">{String(row['customer'])}</Text>
+      <Avatar name={row.customer} size="sm" />
+      <Text className="text-sm">{row.customer}</Text>
     </Row>
   )},
   { key: 'product',  header: 'Product' },
@@ -137,7 +177,7 @@ export function MarketplaceDemo() {
     setCartItems((prev) => prev.filter((i) => i.id !== id));
   }
 
-  const subtotal = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
   const discount = promoApplied ? Math.round(subtotal * 0.15) : 0;
   const total    = subtotal - discount;
 
@@ -199,7 +239,11 @@ export function MarketplaceDemo() {
                 Premium templates, UI kits, AI tools, and developer utilities — all hand-picked and production-ready.
               </Text>
               <Row gap="gap-3" className="pt-2">
-                <Button variant="primary" className="bg-white !text-indigo-700 hover:bg-indigo-50" onClick={() => {}}>
+                <Button
+                  variant="primary"
+                  className="bg-white !text-indigo-700 hover:bg-indigo-50"
+                  onClick={() => {}}
+                >
                   Browse Products
                 </Button>
                 <Button variant="ghost" className="!text-white border-white/30 hover:bg-white/10" onClick={() => setView('dashboard')}>
@@ -233,7 +277,14 @@ export function MarketplaceDemo() {
                     <div className="flex-1" />
                     <Row justify="justify-between" align="items-center" className="pt-1">
                       <Text className="text-base font-bold text-indigo-700">${product.price}</Text>
-                      <Button variant="primary" size="sm" onClick={(e) => { e.stopPropagation(); addToCart(product); }}>
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                          e.stopPropagation();
+                          addToCart(product);
+                        }}
+                      >
                         Add to Cart
                       </Button>
                     </Row>
