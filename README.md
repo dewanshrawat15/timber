@@ -72,6 +72,8 @@ export default {
     './src/**/*.{ts,tsx}',
     './node_modules/@timber/core/dist/**/*.js',
   ],
+  // Enable class-based dark mode (toggled by adding "dark" to a root element)
+  darkMode: 'class',
   // Safelist dynamic grid classes used by the Grid component
   safelist: [
     { pattern: /^grid-cols-/ },
@@ -79,6 +81,26 @@ export default {
   ],
 };
 ```
+
+### Dark mode
+
+All Timber components ship with `dark:` variants for every color. Enable dark mode by adding the `dark` class to any ancestor element — typically the document root:
+
+```tsx
+// Toggle dark mode in your app
+function App() {
+  const [dark, setDark] = useState(false);
+
+  return (
+    <div className={dark ? 'dark' : ''}>
+      {/* All Timber components inside here respond to dark mode */}
+      <Button onClick={() => setDark(d => !d)}>Toggle theme</Button>
+    </div>
+  );
+}
+```
+
+> **Note for dynamic server-driven classes:** If your server sends Tailwind utility classes inside JSON (e.g. gradient classes on a custom component), those strings are not statically scanned by Tailwind's purge step and will be missing from the compiled CSS. Use inline `style` props for any truly dynamic values — for example, pass a CSS `linear-gradient()` string rather than `from-blue-600 to-blue-900`.
 
 Add the Tailwind directives to your global CSS:
 
@@ -202,7 +224,7 @@ import { Button } from '@timber/core';
 | `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'destructive'` | `'primary'` | Visual style |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size |
 | `disabled` | `boolean` | `false` | Disabled state |
-| `onClick` | `() => void` | — | Click handler |
+| `onClick` | `MouseEventHandler<HTMLButtonElement>` | — | Click handler |
 | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | HTML button type |
 | `className` | `string` | — | Additional Tailwind classes |
 | `style` | `CSSProperties` | — | Inline styles |
@@ -251,6 +273,7 @@ import { Card } from '@timber/core';
 | `footer` | `ReactNode` | — | Content rendered below a divider |
 | `bordered` | `boolean` | `false` | Adds a border |
 | `shadow` | `'none' \| 'sm' \| 'md' \| 'lg'` | `'sm'` | Box shadow |
+| `onClick` | `MouseEventHandler<HTMLDivElement>` | — | Makes the card interactive; adds `cursor-pointer` |
 | `className` | `string` | — | Additional Tailwind classes |
 | `style` | `CSSProperties` | — | Inline styles |
 
@@ -923,13 +946,13 @@ To add custom types, pass a "registry" prop with your component map.
 
 ## @timber/sample-server
 
-A minimal Express server that returns `TimberSchema` responses.
+A minimal Express server that returns `TimberSchema` responses. All business logic (filtering, totals, validation, formatting) lives on the server — the client only holds query params and event handlers.
 
-### Single endpoint
+### Endpoints
 
-```
-GET /api/details?screen={screenType}&navId={navId}
-```
+#### `GET /api/details?screen={screenType}`
+
+General-purpose layout endpoint.
 
 | `screen` | Description |
 |---|---|
@@ -945,6 +968,89 @@ GET /api/details?screen={screenType}&navId={navId}
 | `feedback-page` | Column of Alert variants, Badge row, Spinner, Progress |
 
 Returns `400` with a descriptive error for unknown or missing `screen` values.
+
+---
+
+#### `GET /api/search`
+
+Product search with server-side filtering and sorting.
+
+| Param | Type | Description |
+|---|---|---|
+| `q` | `string` | Search query (matches name and category) |
+| `categories` | `string` | Comma-separated category names, e.g. `Audio,Laptops` |
+| `priceMax` | `string` | Maximum price filter |
+| `minRating` | `string` | Minimum rating filter (e.g. `4.5`) |
+| `inStockOnly` | `'true'` | Filter to in-stock products only |
+| `sortBy` | `'relevant' \| 'price-asc' \| 'price-desc' \| 'rating' \| 'reviews'` | Sort order |
+| `cartIds` | `string` | Comma-separated product IDs already in cart (used to toggle button variants) |
+
+Returns a schema with a filter sidebar (Checkbox per category with `checked` set server-side), a results Grid, and an empty state. Filter chip buttons carry keys like `remove-cat-Audio` so the client can wire up removal via `overrides`.
+
+---
+
+#### `GET /api/cart`
+
+Cart totals computed server-side.
+
+| Param | Type | Description |
+|---|---|---|
+| `items` | `string` | Comma-separated `id:qty` pairs, e.g. `1:2,5:1` |
+| `promoCode` | `string` | Promo code to apply (`TIMBER10`, `SAVE20`, `NEWUSER`) |
+| `giftWrap` | `'true'` | Add gift wrapping fee ($5.99) |
+
+The server computes subtotal, shipping (free ≥ $200), promo discount, 8% tax, and total. Nodes use stable keys — `qty-dec-{id}`, `qty-inc-{id}`, `remove-item-{id}`, `promo-input`, `promo-apply-btn`, `gift-wrap-toggle`, `checkout-btn` — so the client wires up all interactions via `overrides`.
+
+---
+
+#### `GET /api/product`
+
+Full product detail page schema.
+
+| Param | Type | Description |
+|---|---|---|
+| `id` | `integer` | Product ID (1–12) |
+| `color` | `string` | Selected color variant |
+| `size` | `string` | Selected size variant |
+| `qty` | `integer` | Quantity (1–10) |
+| `tab` | `'description' \| 'specs' \| 'reviews'` | Active detail tab |
+| `addedToCart` | `'true'` | Toggles the Add to Cart button to "✓ In Cart" |
+
+Color and size selector buttons carry keys `color-{color}` and `size-{size}`. The active button renders with `variant: 'primary'`; inactive buttons use `variant: 'secondary'`. Tab component key is `detail-tabs`.
+
+Returns `404` for unknown product IDs.
+
+---
+
+#### `GET /api/checkout`
+
+Multi-step checkout flow.
+
+| Param | Type | Description |
+|---|---|---|
+| `step` | `1 \| 2 \| 3 \| 4` | Current checkout step (Review → Shipping → Payment → Confirm) |
+| `method` | `'card' \| 'paypal' \| 'applepay'` | Payment method (step 3) |
+| `promoCode` | `string` | Applied promo code (reflected in the order summary sidebar) |
+
+The server renders a visual step indicator (circles + connectors with dynamic CSS classes for done/active/pending states) and a persistent order summary sidebar. Navigation uses keys `next-step-btn` and `prev-step-btn`. Payment method selection key is `payment-method-select`.
+
+---
+
+#### `GET /api/credit-card`
+
+Credit card entry form with live brand detection and number formatting.
+
+| Param | Type | Description |
+|---|---|---|
+| `number` | `string` | Raw card digits (server formats and detects brand) |
+| `name` | `string` | Cardholder name |
+| `expiry` | `string` | Raw digits (server formats to `MM/YY`) |
+| `cvv` | `string` | CVV (server masks to `•••`) |
+| `flipped` | `'true'` | Shows the card back face |
+
+Brand is detected from the number prefix (Visa `4`, Mastercard `51-55`, Amex `34/37`, Discover `6`). The server returns a `CreditCardVisual` node (a custom component type the client must register via `registry`) with all formatted props including a CSS `linear-gradient` string for the card background. Input keys: `card-number-input`, `card-name-input`, `card-expiry-input`, `card-cvv-input`.
+
+---
 
 ### Swagger UI
 
