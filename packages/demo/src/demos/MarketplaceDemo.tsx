@@ -1,4 +1,4 @@
-import type { ChangeEvent, MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 import { useState } from 'react';
 import {
   Avatar, Badge, Button, Card, Column, Divider, Drawer,
@@ -83,65 +83,81 @@ const STATUS_VARIANT: Record<string, 'success' | 'warning' | 'error' | 'default'
 
 /* ─────────────────────────────────────────── table columns ── */
 
-const PRODUCTS_COLUMNS: TableColumn<Product>[] = [
+const PRODUCTS_COLUMNS: TableColumn[] = [
   { key: 'title',    header: 'Product' },
   {
     key: 'category',
     header: 'Category',
-    render: (val) => (
-      <Badge
-        label={val}
-        variant={CATEGORY_BADGE[val] ?? 'default'}
-        size="sm"
-      />
-    ),
+    render: (val) => {
+      const label = String(val);
+      return (
+        <Badge label={label} variant={CATEGORY_BADGE[label] ?? 'default'} size="sm" />
+      );
+    },
   },
   {
     key: 'price',
     header: 'Price',
-    render: (val) => (
-      <Text className="text-sm font-medium">
-        ${val}
-      </Text>
-    ),
+    render: (val) => {
+      const n = Number(val);
+      const formatted = Number.isFinite(n) ? n.toLocaleString() : String(val);
+      return <Text className="text-sm font-medium">${formatted}</Text>;
+    },
   },
   {
     key: 'sales',
     header: 'Sales',
-    render: (val) => (
-      <Text className="text-sm text-gray-600">
-        {val.toLocaleString()}
-      </Text>
-    ),
+    render: (val) => {
+      const n = Number(val);
+      const formatted = Number.isFinite(n) ? n.toLocaleString() : String(val);
+      return <Text className="text-sm text-gray-600">{formatted}</Text>;
+    },
   },
   {
     key: 'status',
     header: 'Status',
-    render: (val) => (
-      <Badge
-        label={val}
-        variant={STATUS_VARIANT[val] ?? 'default'}
-        dot
-        size="sm"
-      />
-    ),
+    render: (val) => {
+      const label = String(val);
+      return (
+        <Badge
+          label={label}
+          variant={STATUS_VARIANT[label] ?? 'default'}
+          dot
+          size="sm"
+        />
+      );
+    },
   },
 ];
 
-type OrderRow = (typeof ORDERS)[number];
-
-const ORDERS_COLUMNS: TableColumn<OrderRow>[] = [
+const ORDERS_COLUMNS: TableColumn[] = [
   { key: 'id',       header: 'Order' },
-  { key: 'customer', header: 'Customer', render: (_val, row) => (
+  {
+    key: 'customer',
+    header: 'Customer',
+    render: (_val, row) => {
+      const customer = String(row['customer'] ?? '');
+      return (
     <Row gap="gap-2" align="items-center">
-      <Avatar name={row.customer} size="sm" />
-      <Text className="text-sm">{row.customer}</Text>
+      <Avatar name={customer} size="sm" />
+      <Text className="text-sm">{customer}</Text>
     </Row>
-  )},
+      );
+    },
+  },
   { key: 'product',  header: 'Product' },
   { key: 'amount',   header: 'Amount', render: (val) => <Text className="text-sm font-semibold">{String(val)}</Text> },
   { key: 'date',     header: 'Date' },
-  { key: 'status',   header: 'Status', render: (val) => <Badge label={String(val)} variant={STATUS_VARIANT[String(val)] ?? 'default'} dot size="sm" /> },
+  {
+    key: 'status',
+    header: 'Status',
+    render: (val) => {
+      const label = String(val);
+      return (
+        <Badge label={label} variant={STATUS_VARIANT[label] ?? 'default'} dot size="sm" />
+      );
+    },
+  },
 ];
 
 /* ──────────────────────────────────────────────── component ── */

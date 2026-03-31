@@ -25,40 +25,40 @@ const STATUS_VARIANT: Record<string, 'success' | 'default' | 'warning'> = {
   Pending: 'warning',
 };
 
-type UserRow = {
-  name: string;
-  email: string;
-  role: string;
-  status: string;
-  joined: string;
-};
-
-const TABLE_COLUMNS: TableColumn<UserRow>[] = [
+const TABLE_COLUMNS: TableColumn[] = [
   {
     key: 'name',
     header: 'User',
-    render: (_val, row) => (
+    render: (_val, row) => {
+      const name = String(row['name'] ?? '');
+      const email = String(row['email'] ?? '');
+
+      return (
       <Row gap="gap-2" align="items-center">
-        <Avatar name={row.name} size="sm" />
+        <Avatar name={name} size="sm" />
         <Column gap="gap-0">
-          <Text className="text-sm font-medium text-gray-900">{row.name}</Text>
-          <Text className="text-xs text-gray-400">{row.email}</Text>
+          <Text className="text-sm font-medium text-gray-900">{name}</Text>
+          <Text className="text-xs text-gray-400">{email}</Text>
         </Column>
       </Row>
-    ),
+      );
+    },
   },
   { key: 'role', header: 'Role' },
   {
     key: 'status',
     header: 'Status',
-    render: (val) => (
-      <Badge
-        label={String(val)}
-        variant={STATUS_VARIANT[String(val)] ?? 'default'}
-        dot
-        size="sm"
-      />
-    ),
+    render: (val) => {
+      const label = String(val);
+      return (
+        <Badge
+          label={label}
+          variant={STATUS_VARIANT[label] ?? 'default'}
+          dot
+          size="sm"
+        />
+      );
+    },
   },
   { key: 'joined', header: 'Joined' },
 ];
