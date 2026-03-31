@@ -48,7 +48,7 @@ export function BottomSheet({
           >
             <Dialog.Panel
               className={[
-                'w-full overflow-y-auto bg-white rounded-t-2xl shadow-2xl p-6',
+                'w-full overflow-y-auto bg-white dark:bg-gray-900 rounded-t-2xl shadow-2xl p-6',
                 maxHeight,
                 className ?? '',
               ]
@@ -56,9 +56,9 @@ export function BottomSheet({
                 .join(' ')}
             >
               {/* Drag handle */}
-              <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-gray-300" />
+              <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-gray-300 dark:bg-gray-700" />
               {title && (
-                <Dialog.Title className="text-lg font-semibold text-gray-900 mb-4">
+                <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
                   {title}
                 </Dialog.Title>
               )}

@@ -21,11 +21,11 @@ const SIZE_CLASSES: Record<ProgressSize, string> = {
 };
 
 const COLOR_CLASSES: Record<ProgressColor, string> = {
-  indigo: 'bg-indigo-600',
-  green: 'bg-green-500',
-  yellow: 'bg-yellow-400',
-  red: 'bg-red-500',
-  gray: 'bg-gray-400',
+  indigo: 'bg-indigo-600 dark:bg-indigo-500',
+  green: 'bg-green-500 dark:bg-green-400',
+  yellow: 'bg-yellow-400 dark:bg-yellow-500',
+  red: 'bg-red-500 dark:bg-red-400',
+  gray: 'bg-gray-400 dark:bg-gray-500',
 };
 
 export function Progress({
@@ -44,9 +44,9 @@ export function Progress({
     <div className={['w-full', className ?? ''].filter(Boolean).join(' ')} style={style}>
       {(label || showLabel) && (
         <div className="flex justify-between items-center mb-1">
-          {label && <span className="text-sm font-medium text-gray-700">{label}</span>}
+          {label && <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>}
           {showLabel && (
-            <span className="text-xs text-gray-500 ml-auto">{Math.round(pct)}%</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">{Math.round(pct)}%</span>
           )}
         </div>
       )}
@@ -55,7 +55,7 @@ export function Progress({
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}
-        className={['w-full bg-gray-200 rounded-full overflow-hidden', SIZE_CLASSES[size]].join(' ')}
+        className={['w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden', SIZE_CLASSES[size]].join(' ')}
       >
         <div
           className={['h-full rounded-full transition-all duration-500', COLOR_CLASSES[color]].join(' ')}

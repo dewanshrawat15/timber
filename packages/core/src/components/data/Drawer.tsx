@@ -79,7 +79,7 @@ export function Drawer({
           >
             <Dialog.Panel
               className={[
-                'relative flex flex-col w-screen bg-white shadow-2xl',
+                'relative flex flex-col w-screen bg-white dark:bg-gray-900 shadow-2xl',
                 SIZE_CLASSES[size],
                 className ?? '',
               ]
@@ -87,16 +87,16 @@ export function Drawer({
                 .join(' ')}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 shrink-0">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700 shrink-0">
                 {title && (
-                  <Dialog.Title className="text-lg font-semibold text-gray-900">
+                  <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                     {title}
                   </Dialog.Title>
                 )}
                 <button
                   type="button"
                   onClick={onClose}
-                  className="ml-auto -mr-1 p-1.5 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                  className="ml-auto -mr-1 p-1.5 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                   aria-label="Close drawer"
                 >
                   <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

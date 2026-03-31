@@ -18,11 +18,11 @@ const SIZE_CLASSES: Record<SpinnerSize, string> = {
 };
 
 const COLOR_CLASSES: Record<SpinnerColor, string> = {
-  indigo: 'border-indigo-200 border-t-indigo-600',
+  indigo: 'border-indigo-200 border-t-indigo-600 dark:border-indigo-800 dark:border-t-indigo-400',
   white: 'border-white/30 border-t-white',
-  gray: 'border-gray-200 border-t-gray-600',
-  green: 'border-green-200 border-t-green-600',
-  red: 'border-red-200 border-t-red-600',
+  gray: 'border-gray-200 border-t-gray-600 dark:border-gray-700 dark:border-t-gray-400',
+  green: 'border-green-200 border-t-green-600 dark:border-green-800 dark:border-t-green-400',
+  red: 'border-red-200 border-t-red-600 dark:border-red-800 dark:border-t-red-400',
 };
 
 export function Spinner({

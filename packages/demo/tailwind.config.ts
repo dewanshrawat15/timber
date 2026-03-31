@@ -12,6 +12,7 @@ export default {
     { pattern: /^grid-cols-/ },
     { pattern: /^grid-rows-/ },
   ],
+  darkMode: 'class',
   theme: { extend: {} },
   plugins: [],
 } satisfies Config;

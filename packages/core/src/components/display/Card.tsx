@@ -33,8 +33,8 @@ export function Card({
   onClick,
 }: CardProps) {
   const classes = [
-    'rounded-xl bg-white p-4',
-    bordered ? 'border border-gray-200' : '',
+    'rounded-xl bg-white p-4 dark:bg-gray-800',
+    bordered ? 'border border-gray-200 dark:border-gray-700' : '',
     SHADOW_CLASSES[shadow],
     onClick ? 'cursor-pointer' : '',
     className ?? '',
@@ -47,16 +47,16 @@ export function Card({
       {(title || subtitle) && (
         <div className="mb-3">
           {title && (
-            <h3 className="text-base font-semibold text-gray-900">{title}</h3>
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">{title}</h3>
           )}
           {subtitle && (
-            <p className="mt-0.5 text-sm text-gray-500">{subtitle}</p>
+            <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">{subtitle}</p>
           )}
         </div>
       )}
       {children && <div>{children}</div>}
       {footer && (
-        <div className="mt-4 border-t border-gray-100 pt-3">{footer}</div>
+        <div className="mt-4 border-t border-gray-100 dark:border-gray-700 pt-3">{footer}</div>
       )}
     </div>
   );

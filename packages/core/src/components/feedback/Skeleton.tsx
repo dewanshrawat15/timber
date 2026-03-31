@@ -21,7 +21,7 @@ function SkeletonLine({ widthClass, rounded }: { widthClass: string; rounded: st
   return (
     <div
       className={[
-        'animate-pulse bg-gray-200 h-4',
+        'animate-pulse bg-gray-200 dark:bg-gray-700 h-4',
         rounded,
         widthClass,
       ].join(' ')}
@@ -60,7 +60,7 @@ export function Skeleton({
     <div
       aria-hidden="true"
       className={[
-        'animate-pulse bg-gray-200',
+        'animate-pulse bg-gray-200 dark:bg-gray-700',
         roundedClass,
         className ?? '',
       ]

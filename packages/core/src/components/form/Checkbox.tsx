@@ -37,7 +37,8 @@ export function Checkbox({
           disabled={disabled}
           className={[
             'h-4 w-4 rounded border-gray-300 text-indigo-600',
-            'focus:ring-2 focus:ring-indigo-500 focus:ring-offset-0',
+            'dark:border-gray-600 dark:bg-gray-800 dark:checked:bg-indigo-500',
+            'focus:ring-2 focus:ring-indigo-500 focus:ring-offset-0 dark:focus:ring-indigo-400 dark:focus:ring-offset-gray-900',
             disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
           ]
             .filter(Boolean)
@@ -50,7 +51,7 @@ export function Checkbox({
             <label
               htmlFor={checkboxId}
               className={[
-                'font-medium text-gray-900',
+                'font-medium text-gray-900 dark:text-gray-100',
                 disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
               ]
                 .filter(Boolean)
@@ -59,7 +60,7 @@ export function Checkbox({
               {label}
             </label>
           )}
-          {description && <p className="text-gray-500 mt-0.5">{description}</p>}
+          {description && <p className="text-gray-500 dark:text-gray-400 mt-0.5">{description}</p>}
         </div>
       )}
     </div>

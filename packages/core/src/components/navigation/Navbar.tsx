@@ -27,7 +27,7 @@ export function Navbar({
   return (
     <nav
       className={[
-        'w-full bg-white border-b border-gray-200 shadow-sm',
+        'w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm',
         sticky ? 'sticky top-0 z-40' : '',
         className ?? '',
       ]
@@ -51,8 +51,8 @@ export function Navbar({
                   className={[
                     'px-3 py-2 rounded-md text-sm font-medium transition-colors',
                     link.active
-                      ? 'text-indigo-600 bg-indigo-50'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
+                      ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30'
+                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800',
                   ].join(' ')}
                   aria-current={link.active ? 'page' : undefined}
                 >

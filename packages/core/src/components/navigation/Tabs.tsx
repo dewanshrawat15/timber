@@ -28,7 +28,7 @@ export function Tabs({
   if (variant === 'pills') {
     return (
       <div
-        className={['flex gap-1 p-1 bg-gray-100 rounded-lg w-fit', className ?? ''].filter(Boolean).join(' ')}
+        className={['flex gap-1 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg w-fit', className ?? ''].filter(Boolean).join(' ')}
         role="tablist"
         style={style}
       >
@@ -42,8 +42,8 @@ export function Tabs({
             className={[
               'px-4 py-1.5 rounded-md text-sm font-medium transition-all',
               tab.key === activeTab
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700',
+                ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm'
+                : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200',
               tab.disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer',
             ]
               .filter(Boolean)
@@ -59,7 +59,7 @@ export function Tabs({
   // underline variant
   return (
     <div
-      className={['border-b border-gray-200', className ?? ''].filter(Boolean).join(' ')}
+      className={['border-b border-gray-200 dark:border-gray-700', className ?? ''].filter(Boolean).join(' ')}
       style={style}
     >
       <nav className="flex gap-0 -mb-px" role="tablist">
@@ -73,8 +73,8 @@ export function Tabs({
             className={[
               'px-4 py-2.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap',
               tab.key === activeTab
-                ? 'border-indigo-600 text-indigo-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
+                ? 'border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400'
+                : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-600',
               tab.disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer',
             ]
               .filter(Boolean)

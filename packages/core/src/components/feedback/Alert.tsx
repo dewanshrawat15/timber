@@ -15,28 +15,28 @@ export interface AlertProps {
 
 const VARIANT_CLASSES: Record<AlertVariant, { wrapper: string; icon: string; title: string; body: string }> = {
   info: {
-    wrapper: 'bg-blue-50 border-blue-200',
-    icon: 'text-blue-500',
-    title: 'text-blue-800',
-    body: 'text-blue-700',
+    wrapper: 'bg-blue-50 border-blue-200 dark:bg-blue-950/50 dark:border-blue-800',
+    icon: 'text-blue-500 dark:text-blue-400',
+    title: 'text-blue-800 dark:text-blue-200',
+    body: 'text-blue-700 dark:text-blue-300',
   },
   success: {
-    wrapper: 'bg-green-50 border-green-200',
-    icon: 'text-green-500',
-    title: 'text-green-800',
-    body: 'text-green-700',
+    wrapper: 'bg-green-50 border-green-200 dark:bg-green-950/50 dark:border-green-800',
+    icon: 'text-green-500 dark:text-green-400',
+    title: 'text-green-800 dark:text-green-200',
+    body: 'text-green-700 dark:text-green-300',
   },
   warning: {
-    wrapper: 'bg-yellow-50 border-yellow-200',
-    icon: 'text-yellow-500',
-    title: 'text-yellow-800',
-    body: 'text-yellow-700',
+    wrapper: 'bg-yellow-50 border-yellow-200 dark:bg-yellow-950/50 dark:border-yellow-800',
+    icon: 'text-yellow-500 dark:text-yellow-400',
+    title: 'text-yellow-800 dark:text-yellow-200',
+    body: 'text-yellow-700 dark:text-yellow-300',
   },
   error: {
-    wrapper: 'bg-red-50 border-red-200',
-    icon: 'text-red-500',
-    title: 'text-red-800',
-    body: 'text-red-700',
+    wrapper: 'bg-red-50 border-red-200 dark:bg-red-950/50 dark:border-red-800',
+    icon: 'text-red-500 dark:text-red-400',
+    title: 'text-red-800 dark:text-red-200',
+    body: 'text-red-700 dark:text-red-300',
   },
 };
 

@@ -59,7 +59,7 @@ export function Modal({
           >
             <Dialog.Panel
               className={[
-                'w-full bg-white rounded-2xl shadow-xl p-6',
+                'w-full bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-6',
                 SIZE_CLASSES[size],
                 className ?? '',
               ]
@@ -67,12 +67,12 @@ export function Modal({
                 .join(' ')}
             >
               {title && (
-                <Dialog.Title className="text-lg font-semibold text-gray-900">
+                <Dialog.Title className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                   {title}
                 </Dialog.Title>
               )}
               {description && (
-                <Dialog.Description className="mt-1 text-sm text-gray-500">
+                <Dialog.Description className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                   {description}
                 </Dialog.Description>
               )}

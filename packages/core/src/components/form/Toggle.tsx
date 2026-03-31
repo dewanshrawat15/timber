@@ -54,7 +54,7 @@ export function Toggle({
             <Switch.Label
               as="span"
               className={[
-                'text-sm font-medium text-gray-900',
+                'text-sm font-medium text-gray-900 dark:text-gray-100',
                 disabled ? 'opacity-50' : '',
               ]
                 .filter(Boolean)
@@ -64,7 +64,7 @@ export function Toggle({
             </Switch.Label>
           )}
           {description && (
-            <Switch.Description as="span" className="text-xs text-gray-500">
+            <Switch.Description as="span" className="text-xs text-gray-500 dark:text-gray-400">
               {description}
             </Switch.Description>
           )}
@@ -78,8 +78,8 @@ export function Toggle({
         className={[
           'relative inline-flex shrink-0 items-center rounded-full border-2 border-transparent',
           'transition-colors duration-200 ease-in-out',
-          'focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
-          checked ? 'bg-indigo-600' : 'bg-gray-200',
+          'focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900',
+          checked ? 'bg-indigo-600 dark:bg-indigo-500' : 'bg-gray-200 dark:bg-gray-600',
           disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
           TRACK_SIZE[size],
         ]

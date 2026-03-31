@@ -3,6 +3,11 @@ import cors from 'cors';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import detailsRouter from './routes/details';
+import searchRouter from './routes/search';
+import cartRouter from './routes/cart';
+import productRouter from './routes/product';
+import checkoutRouter from './routes/checkout';
+import creditCardRouter from './routes/creditCard';
 
 const app = express();
 app.use(cors());
@@ -102,6 +107,11 @@ app.get('/openapi.json', (_req, res) => res.json(swaggerSpec));
 // Routes
 // ---------------------------------------------------------------------------
 app.use('/api/details', detailsRouter);
+app.use('/api/search', searchRouter);
+app.use('/api/cart', cartRouter);
+app.use('/api/product', productRouter);
+app.use('/api/checkout', checkoutRouter);
+app.use('/api/credit-card', creditCardRouter);
 
 // Health check
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
