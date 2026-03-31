@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Build core library
+        run: yarn build
+
       - name: Build demo app
         env:
           # Make sure Vite uses the correct base path in CI
